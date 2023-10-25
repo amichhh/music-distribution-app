@@ -2,7 +2,9 @@ package music.domain.model.account;
 
 public interface MemberAccountRepository {
 
-    MemberAccount save(MemberAccount account);
+    MemberAccount store(MemberAccount account);
+
+    MemberAccount update(MemberAccount account);
 
     MemberAccount load(AccountId accountId);
 

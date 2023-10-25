@@ -1,6 +1,7 @@
 package music.domain.model.account;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
@@ -15,22 +16,36 @@ public class MemberAccount {
     private String name;
     @NotBlank
     private String password;
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private AuthorityType authority;
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private AccountStatusType accountStatus;
 
-    private MemberAccount(final AccountId accountId, final String name, final EncodedPassword password) {
+    private MemberAccount() {
+    }
+
+    private MemberAccount(final AccountId accountId, final String name, final EncodedPassword password,
+            final AuthorityType authority, final AccountStatusType accountStatus) {
         this.accountId = accountId.value();
         this.name = name;
         this.password = password.value();
-        this.authority = AuthorityType.MEMBER;
-        this.accountStatus = AccountStatusType.VALID;
+        this.authority = authority;
+        this.accountStatus = accountStatus;
     }
 
-    /** メンバーアカウントを作成する。 */
+    /**
+     * メンバーアカウントを作成する。
+     */
     public static MemberAccount create(final AccountId accountId, final String name, final EncodedPassword password) {
-        return new MemberAccount(accountId, name, password);
+        return new MemberAccount(accountId, name, password, AuthorityType.MEMBER, AccountStatusType.VALID);
+    }
+
+    /**
+     * メンバーアカウントを変更する。
+     */
+    public MemberAccount change(final String name, final EncodedPassword password,
+            final AuthorityType authority, final AccountStatusType accountStatus) {
+        return new MemberAccount(AccountId.create(this.accountId), name, password, authority, accountStatus);
     }
 
     /** アカウント状態を有効にする。 */
@@ -49,14 +64,6 @@ public class MemberAccount {
         this.accountStatus = AccountStatusType.INVALID;
     }
 
-    Boolean isAdmin() {
-        return this.authority == AuthorityType.ADMIN;
-    }
-
-    Boolean isPrivilege() {
-        return this.authority == AuthorityType.PRIVILEGE;
-    }
-
     public Boolean isValid() {
         return this.accountStatus == AccountStatusType.VALID;
     }
@@ -69,11 +76,19 @@ public class MemberAccount {
         return this.accountId;
     }
 
+    public String name() {
+        return this.name;
+    }
+
     public String password() {
         return this.password;
     }
 
     public AuthorityType authority() {
         return this.authority;
+    }
+
+    public AccountStatusType status() {
+        return this.accountStatus;
     }
 }
