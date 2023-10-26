@@ -5,16 +5,18 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import music.domain.model.music.type.MusicStatusType;
-import music.domain.shared.IdGenerator;
 
 @Entity
 public class Music {
     @Id
-    private String musicId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NotBlank
     private String title;
     @NotBlank
@@ -32,10 +34,9 @@ public class Music {
     @Min(0)
     private int purchaseCount;
 
-    private Music(final String musicId, final String title, final String artistId, final int price,
+    private Music(final String title, final String artistId, final int price,
             final LocalDate releaseDay, final LocalDateTime publishDate, final MusicStatusType musicStatus,
             final int purchaseCount) {
-        this.musicId = musicId;
         this.title = title;
         this.artistId = artistId;
         this.price = price;
@@ -52,8 +53,7 @@ public class Music {
             final LocalDate releaseDay, final LocalDateTime publishDate, final int purchaseCount) {
         MusicStatusType musicStatus = publishDate.isAfter(LocalDateTime.now()) ? MusicStatusType.UNAVAILABLE
                 : MusicStatusType.AVAILABLE;
-        return new Music(IdGenerator.genarateMusicId(), title, artistId, price, releaseDay, publishDate, musicStatus,
-                0);
+        return new Music(title, artistId, price, releaseDay, publishDate, musicStatus, 0);
     }
 
     public Boolean isAvailable() {

@@ -1,14 +1,16 @@
 package music.domain.model.artist;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import music.domain.shared.IdGenerator;
 
 @Entity
 public class Artist {
     @Id
-    private String artistId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NotBlank
     private String name;
     @NotBlank
@@ -17,8 +19,12 @@ public class Artist {
     private Artist() {
     }
 
-    private Artist(final String artistId, final String name, final String outline) {
-        this.artistId = artistId;
+    private Artist(final String name, final String outline) {
+        this.name = name;
+        this.outline = outline;
+    }
+
+    private Artist(final Long id, final String name, final String outline) {
         this.name = name;
         this.outline = outline;
     }
@@ -27,13 +33,13 @@ public class Artist {
      * アーティストを作成する。
      */
     public static Artist create(final String artistId, final String name, final String outline) {
-        return new Artist(IdGenerator.genarateArtistId(), name, outline);
+        return new Artist(name, outline);
     }
 
     /**
      * アーティストを変更する。
      */
     public Artist change(final String name, final String outline) {
-        return new Artist(this.artistId, name, outline);
+        return new Artist(this.id, name, outline);
     }
 }

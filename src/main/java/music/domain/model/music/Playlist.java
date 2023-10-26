@@ -11,22 +11,19 @@ import music.domain.model.account.AccountId;
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long playlistId;
-    @NotBlank
-    private String title;
+    private Long id;
     @NotBlank
     private String accountId;
+    @NotBlank
+    private String title;
 
-    private Playlist() {
-    }
-
-    private Playlist(final String title, final AccountId accountId) {
+    private Playlist(final String accountId, final String title) {
+        this.accountId = accountId;
         this.title = title;
-        this.accountId = accountId.value();
     }
 
     /** プレイリストを作成する。 */
-    public Playlist create(final String title, final AccountId accountId) {
-        return new Playlist(title, accountId);
+    public Playlist create(final AccountId accountId, final String title) {
+        return new Playlist(accountId.value(), title);
     }
 }
