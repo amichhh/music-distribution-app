@@ -4,11 +4,13 @@ import java.util.List;
 
 public interface MusicRepository {
 
+    Music load(Long id);
+
+    List<Music> search();
+
     Music store(Music music);
 
     Music update(Music music);
-
-    Music load(String musicId);
 
     List<Music> searchByTitle(String title);
 
@@ -17,5 +19,4 @@ public interface MusicRepository {
     List<Music> searchOrderByPopularity();
 
     List<Music> searchOrderByNewest();
-
 }

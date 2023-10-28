@@ -1,6 +1,10 @@
 package music.domain.model.account;
 
+import java.util.List;
+
 public interface MemberAccountRepository {
+
+    List<MemberAccount> search();
 
     MemberAccount store(MemberAccount account);
 

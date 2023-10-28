@@ -42,4 +42,12 @@ public class Artist {
     public Artist change(final String name, final String outline) {
         return new Artist(this.id, name, outline);
     }
+
+    public String name() {
+        return this.name;
+    }
+
+    public String outline() {
+        return this.outline;
+    }
 }
