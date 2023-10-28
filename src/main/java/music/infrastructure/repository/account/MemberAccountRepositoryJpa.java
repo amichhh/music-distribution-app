@@ -1,5 +1,7 @@
 package music.infrastructure.repository.account;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +10,11 @@ import music.domain.model.account.MemberAccount;
 import music.domain.model.account.MemberAccountRepository;
 
 @Repository
-public interface MemberAccountRepositoryImpl extends JpaRepository<MemberAccount, String>, MemberAccountRepository {
+public interface MemberAccountRepositoryJpa extends JpaRepository<MemberAccount, String>, MemberAccountRepository {
+
+    default List<MemberAccount> search() {
+        return findAll();
+    }
 
     default MemberAccount store(MemberAccount account) {
         return save(account);
@@ -29,4 +35,5 @@ public interface MemberAccountRepositoryImpl extends JpaRepository<MemberAccount
     default MemberAccount loadByLoginId(String loginId) {
         return findById(loginId).orElseThrow(() -> new RuntimeException("Account not found"));
     }
+
 }
