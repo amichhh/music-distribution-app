@@ -6,8 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class PlaylistItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +29,7 @@ public class PlaylistItem {
     }
 
     /** プレイリストアイテムを作成する。 */
-    PlaylistItem register(final Long playlistId, final Long musicId, final int sortOrder) {
+    public static PlaylistItem create(final Long playlistId, final Long musicId, final int sortOrder) {
         return new PlaylistItem(playlistId, musicId, sortOrder);
     }
 }

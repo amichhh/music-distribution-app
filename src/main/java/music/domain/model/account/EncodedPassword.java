@@ -3,7 +3,7 @@ package music.domain.model.account;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class EncodedPassword {
-    private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     private static final int MAX_LENGTH = 32;
     private static final int MIN_LENGTH = 8;
     final String value;

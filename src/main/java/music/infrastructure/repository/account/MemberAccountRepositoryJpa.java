@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import music.domain.model.account.Account;
 import music.domain.model.account.AccountId;
-import music.domain.model.account.MemberAccount;
-import music.domain.model.account.MemberAccountRepository;
+import music.domain.model.account.AccountRepository;
 
 @Repository
-public interface MemberAccountRepositoryJpa extends JpaRepository<MemberAccount, String>, MemberAccountRepository {
+public interface MemberAccountRepositoryJpa extends JpaRepository<Account, String>, AccountRepository {
 
-    default List<MemberAccount> search() {
+    default List<Account> search() {
         return findAll();
     }
 
-    default MemberAccount store(MemberAccount account) {
+    default Account store(Account account) {
         return save(account);
     }
 
-    default MemberAccount update(MemberAccount account) {
+    default Account update(Account account) {
         return save(account);
     }
 
@@ -28,11 +28,11 @@ public interface MemberAccountRepositoryJpa extends JpaRepository<MemberAccount,
         return existsById(accountId.value());
     }
 
-    default MemberAccount load(AccountId accountId) {
+    default Account load(AccountId accountId) {
         return findById(accountId.value()).orElseThrow(() -> new RuntimeException("メンバーアカウントが見つかりませんでした。"));
     }
 
-    default MemberAccount loadByLoginId(String loginId) {
+    default Account loadByLoginId(String loginId) {
         return findById(loginId).orElseThrow(() -> new RuntimeException("Account not found"));
     }
 

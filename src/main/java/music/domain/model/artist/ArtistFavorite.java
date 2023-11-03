@@ -5,16 +5,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import music.domain.model.account.AccountId;
 
 @Entity
+@Getter
 public class ArtistFavorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String accountId;
-    @NotBlank
+    @NotNull
     private Long artistId;
 
     private ArtistFavorite() {

@@ -19,4 +19,5 @@ public interface MusicRepository {
     List<Music> searchOrderByPopularity();
 
     List<Music> searchOrderByNewest();
+
 }

@@ -5,8 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +34,7 @@ public class Artist {
     /**
      * アーティストを作成する。
      */
-    public static Artist create(final String artistId, final String name, final String outline) {
+    public static Artist create(final String name, final String outline) {
         return new Artist(name, outline);
     }
 
@@ -41,13 +43,5 @@ public class Artist {
      */
     public Artist change(final String name, final String outline) {
         return new Artist(this.id, name, outline);
-    }
-
-    public String name() {
-        return this.name;
-    }
-
-    public String outline() {
-        return this.outline;
     }
 }

@@ -10,6 +10,10 @@ public interface SalesRecordRepository {
 
     List<SalesRecord> searchByAccountId(AccountId accountId);
 
+    List<SalesRecord> searchByCompanyId(String companyId);
+
     SalesRecord store(SalesRecord record);
+
+    Boolean isPurchased(AccountId accountId, Long musicId);
 
 }

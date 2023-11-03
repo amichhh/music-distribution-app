@@ -3,11 +3,15 @@ package music.domain.model;
 public class Money {
     private final int amount;
 
-    public Money(final int amount) {
+    private Money(final int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("金額が0円より小さい数字です。");
         }
         this.amount = amount;
+    }
+
+    public static Money create(final int amount) {
+        return new Money(amount);
     }
 
     public Money add(final Money add) {

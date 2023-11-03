@@ -4,12 +4,12 @@ import java.util.List;
 
 public interface PlaylistItemRepository {
 
-    List<PlaylistItem> search();
+    List<PlaylistItem> search(Long playlistId);
 
-    PlaylistItem store(PlaylistItem item);
-
-    PlaylistItem update(PlaylistItem item);
+    PlaylistItem store(PlaylistItem playlistItem);
 
     void delete(Long id);
+
+    int itemCount(Long playlistId);
 
 }

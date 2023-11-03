@@ -1,8 +1,8 @@
 package music.domain.model.sales.type;
 
 public enum PaymentMethodType {
+    /** 残高 */
+    BALANCE,
     /** クレジットカード */
-    CREDIT_CARD,
-    /** コンビニ支払い */
-    CONVENIENCE_STORE
+    CREDIT_CARD
 }
