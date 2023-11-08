@@ -24,7 +24,7 @@ public class RegisterMemberAccountUseCase {
      * @return 登録したメンバーアカウント
      */
     public Account registerMemberAccount(final RegisterMemberAccountDto param) {
-        AccountId accountId = AccountId.create(param.getAccountId());
+        AccountId accountId = AccountId.of(param.getAccountId());
         if (rep.existsByAccountId(accountId)) {
             throw new RuntimeException("アカウントIDが既に登録されています。");
         }
@@ -35,7 +35,7 @@ public class RegisterMemberAccountUseCase {
      * メンバーアカウントのインスタンスを生成する。
      */
     private Account createMemberAccount(final RegisterMemberAccountDto param) {
-        return Account.create(AccountId.create(param.getAccountId()), param.getName(),
-                EncodedPassword.create(param.getPassword()), AuthorityType.MEMBER);
+        return Account.create(AccountId.of(param.getAccountId()), param.getName(),
+                EncodedPassword.of(param.getPassword()), AuthorityType.MEMBER);
     }
 }

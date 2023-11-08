@@ -61,8 +61,7 @@ public class Account {
         if (this.isValid()) {
             throw new InvalidStateTransitionException("アカウント状態は既に有効です。");
         }
-        this.status = AccountStatusType.VALID;
-        return this;
+        return new Account(this.accountId, this.name, this.password, this.authority, AccountStatusType.VALID);
     }
 
     /**
@@ -72,8 +71,7 @@ public class Account {
         if (this.isInvalid()) {
             throw new InvalidStateTransitionException("アカウント状態は既に無効です。");
         }
-        this.status = AccountStatusType.INVALID;
-        return this;
+        return new Account(this.accountId, this.name, this.password, this.authority, AccountStatusType.INVALID);
     }
 
     public Boolean isValid() {

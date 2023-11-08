@@ -25,14 +25,14 @@ public class GetAuthenticationUseCase {
      */
     public AccountId accountId() {
         String loginUserId = SecurityContextHolder.getContext().getAuthentication().getName();
-        return AccountId.create(loginUserId);
+        return AccountId.of(loginUserId);
     }
 
     /**
      * ログイン中のユーザーを返す。
      */
     public Account account() {
-        AccountId loginUserId = AccountId.create(SecurityContextHolder.getContext().getAuthentication().getName());
+        AccountId loginUserId = AccountId.of(SecurityContextHolder.getContext().getAuthentication().getName());
         return rep.load(loginUserId);
     }
 }

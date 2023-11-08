@@ -35,8 +35,8 @@ public class PurchaseMusicUseCase {
         }
         Balance balance = balanceRep.load(loginUserId);
         Music music = musicRep.load(param.getMusicId());
-        Money currentBalance = Money.create(balance.getAmount());
-        Money purchasePrice = Money.create(music.getPrice());
+        Money currentBalance = Money.of(balance.getAmount());
+        Money purchasePrice = Money.of(music.getPrice());
         if (currentBalance.isNotEnough(purchasePrice)) {
             throw new RuntimeException("残高が不足しています。");
         }

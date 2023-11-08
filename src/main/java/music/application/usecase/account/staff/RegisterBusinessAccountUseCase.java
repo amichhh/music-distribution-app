@@ -27,7 +27,7 @@ public class RegisterBusinessAccountUseCase {
      * @return 登録したビジネスアカウント
      */
     public Account registerBusinessAccount(final RegisterBusinessAccountDto param) {
-        AccountId accountId = AccountId.create(param.getAccountId());
+        AccountId accountId = AccountId.of(param.getAccountId());
         if (accountRep.existsByAccountId(accountId)) {
             throw new RuntimeException("アカウントIDが既に登録されています。");
         }
@@ -40,8 +40,8 @@ public class RegisterBusinessAccountUseCase {
      * ビジネスアカウントのインスタンスを生成する。
      */
     private Account createBusinessAccount(RegisterBusinessAccountDto param) {
-        return Account.create(AccountId.create(param.getAccountId()), param.getName(),
-                EncodedPassword.create(param.getPassword()), AuthorityType.BUSINESS);
+        return Account.create(AccountId.of(param.getAccountId()), param.getName(),
+                EncodedPassword.of(param.getPassword()), AuthorityType.BUSINESS);
     }
 
     /**

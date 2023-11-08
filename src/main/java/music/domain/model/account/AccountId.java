@@ -11,7 +11,7 @@ public class AccountId {
         this.value = accountId;
     }
 
-    public static AccountId create(final String accountId) {
+    public static AccountId of(final String accountId) {
         return new AccountId(accountId);
     }
 

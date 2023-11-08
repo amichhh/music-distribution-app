@@ -10,7 +10,7 @@ public class Money {
         this.amount = amount;
     }
 
-    public static Money create(final int amount) {
+    public static Money of(final int amount) {
         return new Money(amount);
     }
 

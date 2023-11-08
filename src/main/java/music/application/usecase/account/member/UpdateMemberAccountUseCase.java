@@ -34,6 +34,6 @@ public class UpdateMemberAccountUseCase {
      * メンバーアカウントのインスタンスを生成する。
      */
     private Account changeMemberAccount(final Account current, final UpdateMemberAccountDto param) {
-        return current.change(param.getName(), EncodedPassword.create(param.getPassword()));
+        return current.change(param.getName(), EncodedPassword.of(param.getPassword()));
     }
 }

@@ -35,7 +35,7 @@ public class Balance {
      * 残高を増やす。
      */
     public Balance addValue(final Money amount) {
-        Money currentBalance = Money.create(this.amount);
+        Money currentBalance = Money.of(this.amount);
         Money newBalance = currentBalance.add(amount);
         return new Balance(this.accountId, newBalance.amount());
     }
@@ -44,7 +44,7 @@ public class Balance {
      * 残高を減らす。
      */
     public Balance reduceBalance(final Money amount) {
-        Money currentBalance = Money.create(this.amount);
+        Money currentBalance = Money.of(this.amount);
         Money newBalance = currentBalance.minus(amount);
         return new Balance(this.accountId, newBalance.amount());
     }
