@@ -38,5 +38,4 @@ public class RegisterMemberAccountUseCase {
         return Account.create(AccountId.create(param.getAccountId()), param.getName(),
                 EncodedPassword.create(param.getPassword()), AuthorityType.MEMBER);
     }
-
 }

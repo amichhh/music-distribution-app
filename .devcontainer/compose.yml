@@ -5,8 +5,8 @@ volumes:
 
 
 services:
-  music-app-backend:
-    container_name: music-app-backend
+  backend:
+    container_name: music-distribution-backend
     image: mcr.microsoft.com/devcontainers/java:1-17-bullseye
     environment:
       POSTGRES_PASSWORD: postgres
@@ -17,10 +17,10 @@ services:
       - ~/.ssh:/workspaces/.ssh
     command: sleep infinity
     depends_on:
-      - music-app-db
+      - db
 
-  music-app-db:
-    container_name: music-app-db
+  db:
+    container_name: music-distribution-db
     image: postgres:latest
     restart: always
     ports:

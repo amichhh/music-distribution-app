@@ -1,7 +1,7 @@
 {
-    "name": "music-app-backend",
+    "name": "backend",
     "dockerComposeFile": "compose.yml",
-    "service": "music-app-backend",
+    "service": "backend",
     "shutdownAction": "stopCompose",
     "workspaceFolder": "/workspaces/backend",
     "customizations": {

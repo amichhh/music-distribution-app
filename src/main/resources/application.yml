@@ -4,6 +4,20 @@ spring:
     open-in-view: false
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://music-app-db:5432/postgres
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://db:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    
+server:
+  servlet:
+    session:
+      timeout: 3600
+
+logging:
+  level:
+    root: INFO
+
+app:
+  cron: 
+    music:
+      release: 0 0 0 * * *
