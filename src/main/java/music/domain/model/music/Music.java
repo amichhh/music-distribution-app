@@ -68,16 +68,16 @@ public class Music {
         if (this.isAvailable()) {
             throw new InvalidStateTransitionException("楽曲は既に利用可能です。");
         }
-        this.status = MusicStatusType.AVAILABLE;
-        return this;
+        return new Music(this.title, this.artistId, this.companyId, this.price, this.releaseDay,
+                MusicStatusType.AVAILABLE, this.purchaseCount);
     }
 
     /**
      * 楽曲の購入回数を1増やす。
      */
     public Music plusPurchaseCount() {
-        this.purchaseCount += 1;
-        return this;
+        return new Music(this.title, this.artistId, this.companyId, this.price, this.releaseDay, this.status,
+                this.purchaseCount + 1);
     }
 
     public Boolean isAvailable() {
