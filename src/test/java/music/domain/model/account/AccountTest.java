@@ -26,7 +26,7 @@ public class AccountTest {
                 "test_member_name_2",
                 EncodedPassword.of("TestPass2"),
                 AuthorityType.MEMBER);
-        account2.invalidate();
+        account2 = account2.invalidate();
     }
 
     @Test
@@ -51,10 +51,10 @@ public class AccountTest {
 
         assertThrows(RuntimeException.class, () -> account1.validate());
 
-        account2.validate();
+        Account validated = account2.validate();
 
         assertTrue(account1.isValid());
-        assertTrue(account2.isValid());
+        assertTrue(validated.isValid());
     }
 
     @Test
@@ -64,9 +64,9 @@ public class AccountTest {
 
         assertThrows(RuntimeException.class, () -> account2.invalidate());
 
-        account1.invalidate();
+        Account invalidated = account1.invalidate();
 
-        assertTrue(account1.isInvalid());
+        assertTrue(invalidated.isInvalid());
         assertTrue(account2.isInvalid());
     }
 
