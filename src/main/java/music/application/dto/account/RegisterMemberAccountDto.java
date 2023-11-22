@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class RegisterMemberAccountDto {
     @NotBlank
-    private String accountId;
+    private final String accountId;
     @NotBlank
-    private String name;
+    private final String name;
     @NotBlank
-    private String password;
+    private final String password;
 }
