@@ -23,7 +23,7 @@ public class LikeArtistUseCase {
      * @param param アーティストお気に入り登録用DTO
      * @return 登録したアーティストのお気に入り
      */
-    public ArtistFavorite LikeArtist(final RegisterArtistFavoriteDto param) {
+    public ArtistFavorite likeArtist(final RegisterArtistFavoriteDto param) {
         AccountId loginUserId = authentication.accountId();
         if (rep.isLiked(loginUserId, param.getArtistId())) {
             throw new RuntimeException("アーティストは既にお気に入りに登録されています。");

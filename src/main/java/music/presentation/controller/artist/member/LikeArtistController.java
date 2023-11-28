@@ -22,6 +22,6 @@ public class LikeArtistController {
      */
     @PostMapping("/favorite")
     public ArtistFavorite likeArtist(@RequestBody @Valid final RegisterArtistFavoriteDto param) {
-        return useCase.LikeArtist(param);
+        return useCase.likeArtist(param);
     }
 }
