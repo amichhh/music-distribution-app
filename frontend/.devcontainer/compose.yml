@@ -1,0 +1,13 @@
+services:
+  frontend:
+    container_name: music-distribution-frontend
+    image: "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye"
+    volumes:
+      - ..:/workspaces/frontend:cached
+      - ~/.ssh:/workspaces/.ssh
+    command: sleep infinity
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+volumes:
+  node-modules:
