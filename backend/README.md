@@ -1,4 +1,4 @@
-## music-distribution-app
+## 音楽配信アプリケーション（バックエンド）
 
 Spring Bootで作成した楽曲配信アプリのバックエンド（API）です。
 
